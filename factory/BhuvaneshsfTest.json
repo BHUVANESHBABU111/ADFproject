@@ -1,0 +1,15 @@
+{
+	"name": "BhuvaneshsfTest",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "096590e6-6237-438a-aa7a-6da6b0af340e",
+		"tenantId": "91041507-513a-4879-bc99-224117389edd"
+	}
+}
