@@ -8,6 +8,9 @@
 		"AzureSql_password": {
 			"value": ""
 		},
+		"Snowflake1_password": {
+			"value": ""
+		},
 		"Storagelinkedlist_accountKey": {
 			"value": ""
 		},
@@ -22,6 +25,12 @@
 		},
 		"GitLinked_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"value": "ADF_silver"
+		},
+		"Snowflake1_properties_typeProperties_role": {
+			"value": "ACCOUNTADMIN"
 		},
 		"Storagelinkedlist_properties_typeProperties_url": {
 			"value": "https://bhuvaneshstorage.dfs.core.windows.net/"

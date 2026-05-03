@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSql'"
 		},
+		"Snowflake1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake1'"
+		},
 		"Storagelinkedlist_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'Storagelinkedlist'"
@@ -30,6 +34,14 @@
 		"GitLinked_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "ADF_silver"
+		},
+		"Snowflake1_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "ACCOUNTADMIN"
 		},
 		"Storagelinkedlist_properties_typeProperties_url": {
 			"type": "string",
@@ -75,6 +87,30 @@
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Snowflake1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SnowflakeV2",
+				"typeProperties": {
+					"authenticationType": "Basic",
+					"accountIdentifier": "JCKPQIM-XV49139",
+					"user": "BHUVANESHS003",
+					"database": "[parameters('Snowflake1_properties_typeProperties_database')]",
+					"warehouse": "compute_wh",
+					"role": "[parameters('Snowflake1_properties_typeProperties_role')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Snowflake1_password')]"
+					},
+					"useUtcTimestamps": false
+				},
+				"version": "1.1"
 			},
 			"dependsOn": []
 		},
@@ -474,53 +510,24 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_git_api')]",
+			"name": "[concat(parameters('factoryName'), '/SnowflakeTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Storagelinkedlist",
+					"referenceName": "Snowflake1",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Json",
+				"type": "SnowflakeV2Table",
+				"schema": [],
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "DimAirport.json",
-						"folderPath": "gitup",
-						"fileSystem": "bronze"
-					}
-				},
-				"schema": {}
+					"schema": "SILVER_SCHEMA",
+					"table": "FACTBOOKINGS"
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Storagelinkedlist')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_silver_airport')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Storagelinkedlist",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "DimAirport.json",
-						"folderPath": "gitup",
-						"fileSystem": "bronze"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Storagelinkedlist')]"
+				"[concat(variables('factoryId'), '/linkedServices/Snowflake1')]"
 			]
 		}
 	]

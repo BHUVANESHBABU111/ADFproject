@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSql'"
 		},
+		"Snowflake1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake1'"
+		},
 		"Storagelinkedlist_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'Storagelinkedlist'"
@@ -30,6 +34,14 @@
 		"GitLinked_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "ADF_silver"
+		},
+		"Snowflake1_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "ACCOUNTADMIN"
 		},
 		"Storagelinkedlist_properties_typeProperties_url": {
 			"type": "string",
@@ -65,6 +77,9 @@
 					"AzureSql_password": {
 						"value": "[parameters('AzureSql_password')]"
 					},
+					"Snowflake1_password": {
+						"value": "[parameters('Snowflake1_password')]"
+					},
 					"Storagelinkedlist_accountKey": {
 						"value": "[parameters('Storagelinkedlist_accountKey')]"
 					},
@@ -79,6 +94,12 @@
 					},
 					"GitLinked_properties_typeProperties_url": {
 						"value": "[parameters('GitLinked_properties_typeProperties_url')]"
+					},
+					"Snowflake1_properties_typeProperties_database": {
+						"value": "[parameters('Snowflake1_properties_typeProperties_database')]"
+					},
+					"Snowflake1_properties_typeProperties_role": {
+						"value": "[parameters('Snowflake1_properties_typeProperties_role')]"
 					},
 					"Storagelinkedlist_properties_typeProperties_url": {
 						"value": "[parameters('Storagelinkedlist_properties_typeProperties_url')]"
