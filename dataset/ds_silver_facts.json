@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "data_00e06e0b-4ffe-42fd-811a-bb4dba066082_de3e0606-fe26-48e1-8703-ec8cfea0edb0.parquet",
 				"folderPath": "sql",
 				"fileSystem": "bronze"
 			},
